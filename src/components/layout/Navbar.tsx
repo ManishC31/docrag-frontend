@@ -1,4 +1,4 @@
-import { Brain, LogOut, Settings, Shield, User } from "lucide-react";
+import { Brain, LogOut, Shield, User } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/store/authStore";

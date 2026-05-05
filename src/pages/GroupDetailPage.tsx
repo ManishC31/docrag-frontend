@@ -1,4 +1,3 @@
-import { useCallback, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
@@ -115,7 +114,7 @@ export function GroupDetailPage() {
         <div className="rounded-lg border bg-card p-4">
           <DocumentUpload
             documents={documents}
-            onUpload={(file) => uploadMutation.mutateAsync(file)}
+            onUpload={async (file) => { await uploadMutation.mutateAsync(file); }}
             onDelete={(id) => deleteDocMutation.mutateAsync(id)}
             isUploading={uploadMutation.isPending}
           />
@@ -131,7 +130,7 @@ export function GroupDetailPage() {
         <div className="flex-1 overflow-hidden">
           <ChatInterface
             messages={chatHistory}
-            onSend={(q) => chatMutation.mutateAsync(q)}
+            onSend={async (q) => { await chatMutation.mutateAsync(q); }}
             isLoading={chatMutation.isPending}
             hasReadyDocuments={hasReadyDocuments}
           />

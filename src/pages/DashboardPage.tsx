@@ -53,7 +53,7 @@ export function DashboardPage() {
           <p className="text-sm text-muted-foreground">Organize documents into groups and chat with them</p>
         </div>
         <CreateGroupDialog
-          onCreate={(name, description) => createMutation.mutateAsync({ name, description })}
+          onCreate={async (name, description) => { await createMutation.mutateAsync({ name, description }); }}
         />
       </div>
 
