@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import { useAuthStore } from "@/store/authStore";
 
 export const api = axios.create({
-  baseURL: "/api/v1",
+  baseURL: "https://docrag-api.manishchavan.in/api/v1",
   headers: { "Content-Type": "application/json" },
 });
 
@@ -40,7 +40,7 @@ api.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export function getErrorMessage(error: unknown): string {
