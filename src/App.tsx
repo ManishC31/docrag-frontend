@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Layout } from "@/components/layout/Layout";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { PublicRoute } from "@/components/PublicRoute";
 import { Toaster } from "@/components/ui/toaster";
 import { LoginPage } from "@/pages/LoginPage";
 import { RegisterPage } from "@/pages/RegisterPage";
@@ -27,8 +28,10 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+            <Route element={<PublicRoute />}>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+            </Route>
 
             <Route element={<ProtectedRoute />}>
               <Route element={<Layout />}>
