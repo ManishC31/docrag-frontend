@@ -13,7 +13,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": {
-        target: "https://docrag-api.manishchavan.in",
+        target: "http://localhost:8080",
         changeOrigin: true,
       },
     },

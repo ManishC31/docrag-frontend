@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import { useAuthStore } from "@/store/authStore";
 
 export const api = axios.create({
-  baseURL: "https://docrag-api.manishchavan.in/api/v1",
+  baseURL: (import.meta.env.VITE_API_BASE_URL ?? "") + "/api/v1",
   headers: { "Content-Type": "application/json" },
 });
 
@@ -25,7 +25,7 @@ api.interceptors.response.use(
 
       if (refreshToken) {
         try {
-          const { data } = await axios.post("/api/v1/auth/refresh", { refresh_token: refreshToken });
+          const { data } = await axios.post((import.meta.env.VITE_API_BASE_URL ?? "") + "/api/v1/auth/refresh", { refresh_token: refreshToken });
           useAuthStore.getState().setTokens(data.access_token, data.refresh_token);
           originalRequest.headers!["Authorization"] = `Bearer ${data.access_token}`;
           return api(originalRequest);
