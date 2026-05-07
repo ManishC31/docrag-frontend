@@ -1,14 +1,17 @@
 import { Brain, LogOut, Shield, User } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/store/authStore";
 
 export function Navbar() {
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const handleLogout = () => {
     logout();
+    queryClient.clear();
     navigate("/login");
   };
 
